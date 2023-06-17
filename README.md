@@ -35,3 +35,5 @@ To view previously saved results, you can make a GET request to the /api/results
 
 
 # Output
+
+![alt text](https://github.com/pkpprasanth/EqaimTechnology/blob/master/output/1.png)
