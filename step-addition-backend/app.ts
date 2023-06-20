@@ -1,14 +1,13 @@
-// app.js
-import express from 'express';
+import express, { Express } from 'express';
 import bodyParser from 'body-parser';
 import cors from 'cors';
 import { Pool } from 'pg';
-import {stepRoutes} from "./routes/step"
+import stepRoutes from './routes/step';
 
-const app = express();
-const port = 3001;
+const app: Express = express();
+const port: number = 3001;
 
-const pool = new Pool({
+const pool: Pool = new Pool({
   user: 'root',
   host: 'localhost',
   database: 'step',
@@ -17,7 +16,7 @@ const pool = new Pool({
 });
 app.use(bodyParser.json());
 app.use(cors());
-app.use('/',stepRoutes)
+app.use('/', stepRoutes);
 
 app.listen(port, () => {
   console.log(`Server running at http://localhost:${port}`);

@@ -1,10 +1,10 @@
-
-const express = require('express');
-const User = require('../models/step');
+import express, { Request, Response } from 'express';
+import { Pool } from 'pg';
+import dbConfig from '../config/dbConfig';
 
 const router = express.Router();
-
-app.get('/api/results', async (req, res) => {
+const pool: Pool = new Pool(dbConfig);
+router.get('/api/results', async (req: Request, res: Response) => {
   const { page = 1, pageSize = 10 } = req.query;
 
   try {
@@ -21,8 +21,7 @@ app.get('/api/results', async (req, res) => {
   }
 });
 
-
-app.post('/api/steps', async (req, res) => {
+router.post('/api/steps', async (req: Request, res: Response) => {
   const { number1, number2 } = req.body;
 
   // Validate the request body using regex to accept only positive numbers
@@ -32,7 +31,7 @@ app.post('/api/steps', async (req, res) => {
   }
 
   // Perform the step addition process
-  const steps = [];
+  const steps: any[] = [];
   let carry = 0;
   let sumString = '';
 
@@ -55,7 +54,7 @@ app.post('/api/steps', async (req, res) => {
   res.json(steps);
 });
 
-app.post('/api/save-results', async (req, res) => {
+router.post('/api/save-results', async (req: Request, res: Response) => {
   const { steps } = req.body;
 
   try {
@@ -67,4 +66,4 @@ app.post('/api/save-results', async (req, res) => {
   }
 });
 
-module.exports = router;
+export default router;
